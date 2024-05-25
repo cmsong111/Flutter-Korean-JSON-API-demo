@@ -2,8 +2,8 @@ class Post {
   final int id;
   final String title;
   final String content;
-  final String createdAt;
-  final String updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
   final int userId;
 
   Post({
@@ -20,8 +20,8 @@ class Post {
       id: json['id'],
       title: json['title'],
       content: json['content'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
       userId: json['UserId'],
     );
   }
@@ -31,9 +31,14 @@ class Post {
       'id': id,
       'title': title,
       'content': content,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
       'UserId': userId,
     };
+  }
+
+  @override
+  String toString() {
+    return 'Post{id: $id, title: $title, content: $content, createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId}';
   }
 }

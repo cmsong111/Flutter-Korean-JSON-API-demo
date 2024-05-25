@@ -17,10 +17,10 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      id: json['id'],
+      id: json['id'] as int,
       content: json['content'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
       userId: json['UserId'],
       postId: json['PostId'],
     );
@@ -30,8 +30,8 @@ class Comment {
     return {
       'id': id,
       'content': content,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
       'UserId': userId,
       'PostId': postId,
     };

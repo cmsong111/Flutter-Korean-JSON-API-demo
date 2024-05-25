@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/user-api.dart';
-import 'package:flutter_application_1/user.dart';
+import 'package:flutter_application_1/src/data/models/user.dart';
+import 'package:flutter_application_1/src/data/repositories/user_repository.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class UserHomePage extends StatefulWidget {
+  const UserHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<UserHomePage> createState() => _UserHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _UserHomePageState extends State<UserHomePage> {
   late Future<List<User>> users;
 
   @override
   void initState() {
     super.initState();
-    users = getUsers();
+    UserRepository userRepository = UserRepository();
+    users = userRepository.fetchUsers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("한국어 Json 유저 목록"),
       ),
       body: FutureBuilder(
@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   title: Text(user.name),
                   subtitle: Text(user.email),
+                  onTap: () {},
                 );
               },
             );

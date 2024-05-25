@@ -1,16 +1,18 @@
-# flutter_application_1
+# 한국말 JSON API를 사용한 Flutter 앱
 
-A new Flutter project.
+> GDSC DEU 23-24 Flutter 스터디 4주차 실습 코드
 
-## Getting Started
+## 사용한 API
 
-This project is a starting point for a Flutter application.
+- [Korean JSON](https://koreanjson.com/)
 
-A few resources to get you started if this is your first Flutter project:
+## 사용한 패키지
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [http](https://pub.dev/packages/http) - HTTP 요청을 보내기 위한 패키지
+- [intl](https://pub.dev/packages/intl) - 날짜 포맷을 변경하기 위한 패키지
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 스크린샷
+
+| Post                            | Todo                            | User                            |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| ![Post](./images/post_list.gif) | ![Todo](./images/todo_list.gif) | ![User](./images/user_list.gif) |

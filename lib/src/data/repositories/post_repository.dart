@@ -30,4 +30,14 @@ class PostRepository {
 
     return posts;
   }
+
+  Future<Post> fetchPost(int id) async {
+    final response = await client.get(Uri.parse('$BASE_URL/posts/$id'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load post');
+    }
+
+    return Post.fromJson(jsonDecode(response.body));
+  }
 }

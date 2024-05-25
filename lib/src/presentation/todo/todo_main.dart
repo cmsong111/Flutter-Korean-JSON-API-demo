@@ -23,7 +23,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("한국어 Json 할 일 목록"),
+        title: const Text("한국어 Json 할 일 목록"),
       ),
       body: FutureBuilder(
         future: todos,

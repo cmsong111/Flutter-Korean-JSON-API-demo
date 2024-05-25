@@ -11,11 +11,17 @@ class UserHomePage extends StatefulWidget {
 
 class _UserHomePageState extends State<UserHomePage> {
   late Future<List<User>> users;
+  UserRepository userRepository = UserRepository();
+
+  void refresh() {
+    setState(() {
+      users = userRepository.fetchUsers();
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    UserRepository userRepository = UserRepository();
     users = userRepository.fetchUsers();
   }
 
@@ -24,6 +30,12 @@ class _UserHomePageState extends State<UserHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("한국어 Json 유저 목록"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: refresh,
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: users,

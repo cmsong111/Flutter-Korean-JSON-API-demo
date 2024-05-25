@@ -1,7 +1,7 @@
 class Todo {
   final int id;
   final String title;
-  final bool completed;
+  bool completed;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int userId;

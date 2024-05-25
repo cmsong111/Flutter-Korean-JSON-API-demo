@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/data/models/todo.dart';
 import 'package:flutter_application_1/src/data/repositories/todo_repository.dart';
+import 'package:intl/intl.dart';
 
 class TodoHomePage extends StatefulWidget {
   const TodoHomePage({super.key});
@@ -11,6 +12,22 @@ class TodoHomePage extends StatefulWidget {
 
 class _TodoHomePageState extends State<TodoHomePage> {
   late Future<List<Todo>> todos;
+
+  void sort() {
+    setState(() {
+      // 완료 여부, createdAt 기준으로 정렬
+      todos = todos.then((todos) {
+        todos.sort((a, b) {
+          if (a.completed == b.completed) {
+            return a.createdAt.compareTo(b.createdAt);
+          } else {
+            return a.completed ? 1 : -1;
+          }
+        });
+        return todos;
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -36,16 +53,23 @@ class _TodoHomePageState extends State<TodoHomePage> {
               itemBuilder: (context, index) {
                 Todo todo = snapshot.data![index];
                 return ListTile(
-                  title: Text(
-                    todo.title,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  subtitle: Text(
-                    todo.completed ? "완료" : "미완료",
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onTap: () {},
-                );
+                    title: Text(
+                      todo.title,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      "생성일: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(todo.createdAt)}",
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    onTap: () {},
+                    trailing: Switch(
+                      value: todo.completed,
+                      onChanged: (value) {
+                        setState(() {
+                          todo.completed = value;
+                        });
+                      },
+                    ));
               },
             );
           }
